@@ -78,27 +78,28 @@ npm run preview
 
 ## 📁 Project Structure
 
+```text
 codedale-clone/
 ├── public/
-│   ├── logo.png
-│   └── vite.svg
+│ ├── logo.png
+│ └── vite.svg
 ├── src/
-│   ├── components/
-│   │   ├── sections/
-│   │   │   ├── Footer.jsx
-│   │   │   ├── Header.jsx
-│   │   │   ├── Hero.jsx
-│   │   │   ├── Loader.jsx
-│   │   │   ├── TestimonialCard.jsx
-│   │   │   └── Testimonials.jsx
-│   │   └── ui/
-│   │       ├── Card.jsx
-│   │       └── Container.jsx
-│   ├── data/
-│   │   └── testimonials.js
-│   ├── App.jsx
-│   ├── index.css
-│   └── main.jsx
+│ ├── components/
+│ │ ├── sections/
+│ │ │ ├── Footer.jsx
+│ │ │ ├── Header.jsx
+│ │ │ ├── Hero.jsx
+│ │ │ ├── Loader.jsx
+│ │ │ ├── TestimonialCard.jsx
+│ │ │ └── Testimonials.jsx
+│ │ └── ui/
+│ │ ├── Card.jsx
+│ │ └── Container.jsx
+│ ├── data/
+│ │ └── testimonials.js
+│ ├── App.jsx
+│ ├── index.css
+│ └── main.jsx
 ├── .gitignore
 ├── eslint.config.js
 ├── index.html
@@ -107,7 +108,7 @@ codedale-clone/
 ├── README.md
 ├── tailwind.config.js
 └── vite.config.js
-
+```
 
 
 ## 🎨 Design Decisions
