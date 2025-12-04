@@ -79,14 +79,10 @@ npm run preview
 ## 📁 Project Structure
 
 codedale-clone/
-├── .qodo/
-├── dist/
-├── node_modules/
 ├── public/
 │ ├── logo.png
 │ └── vite.svg
 ├── src/
-│ ├── assets/
 │ ├── components/
 │ │ ├── sections/
 │ │ │ ├── Footer.jsx
@@ -106,7 +102,6 @@ codedale-clone/
 ├── .gitignore
 ├── eslint.config.js
 ├── index.html
-├── package-lock.json
 ├── package.json
 ├── postcss.config.js
 ├── README.md
@@ -133,8 +128,9 @@ codedale-clone/
 
 ## 🧩 Technical Highlights
 
-### 1. Custom Carousel Logic
-// Responsive card count with smooth transitions
+### Custom Carousel Logic
+Responsive card count with smooth transitions:
+
 useEffect(() => {
 const handleResize = () => {
 if (window.innerWidth >= 1024) setVisibleCards(3);
@@ -147,8 +143,9 @@ return () => window.removeEventListener('resize', handleResize);
 }, []);
 
 
-### 2. Hover Cursor Tracking
-// Dynamic background pill follows nav items
+### Hover Cursor Tracking
+Dynamic background pill follows nav items:
+
 const handleMouseEnter = () => {
 const rect = ref.current.getBoundingClientRect();
 const parentRect = ref.current.parentElement.getBoundingClientRect();
@@ -159,11 +156,17 @@ opacity: 1
 });
 };
 
-### 3. Button Icon Animation
-// Smooth width transition revealing hidden icons
+
+### Button Icon Animation
+Smooth width transition revealing hidden icons:
+
 <motion.div
 animate={{ width: isHovered ? '90px' : '28px' }}
 transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+
+{/* Icon content */}
+</motion.div>
+
 
 ## 📊 Performance
 
