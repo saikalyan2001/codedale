@@ -9,7 +9,7 @@ const Header = () => {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 pt-4 sm:pt-6">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-4 pt-4 sm:pt-6">
         {/* Desktop / Tablet layout (>= 768px) */}
         <div className="hidden md:flex items-center justify-between gap-4">
           {/* Logo */}
