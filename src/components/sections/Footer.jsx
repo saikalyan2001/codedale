@@ -12,20 +12,23 @@ const Footer = () => {
         {/* Main Grid Layout */}
         <div className="flex flex-col lg:grid lg:grid-cols-[1.2fr_auto_auto_1.5fr] lg:items-start justify-between gap-12 lg:gap-x-16 lg:gap-y-0 mb-16 lg:mb-24">
           {/* Left: Logo & Description */}
-          <div className="flex flex-col gap-6">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-[#0067F4] rounded-full flex items-center justify-center shrink-0">
-                <svg viewBox="0 0 24 24" fill="none" className="w-4 h-4" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M13 3L4 14h7l-1 7 9-11h-7l1-7z" fill="white" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </div>
-              <span className="text-[22px] font-satoshi font-bold text-[#0067F4]">CodeDale</span>
-            </div>
+<div className="flex flex-col gap-6">
+  <div className="flex items-center gap-2">
+    <div className="w-8 h-8 flex items-center justify-center shrink-0">
+      <img 
+        src="/logo.png" 
+        alt="CodeDale Logo" 
+        className="w-8 h-8 object-contain"
+      />
+    </div>
+    <span className="text-[22px] font-satoshi font-bold text-[#0067F4]">CodeDale</span>
+  </div>
 
-            <p className="text-gray-500 text-[15px] leading-relaxed max-w-[280px]">
-              Strategic web design, and campaigns tailored to drive result and conversions.
-            </p>
-          </div>
+  <p className="text-gray-500 text-[15px] leading-relaxed max-w-[280px]">
+    Strategic web design, and campaigns tailored to drive result and conversions.
+  </p>
+</div>
+
 
           {/* Company Links - Desktop only */}
           <div className="flex-shrink-0 lg:block hidden">

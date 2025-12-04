@@ -140,16 +140,27 @@ const NavItem = ({ label, setCursor }) => {
 /**
  * CodeDale logo with lightning bolt icon
  */
+
 const Logo = ({ size }) => {
   const textSize = size === 'mobile' ? 'text-[16px]' : 'text-[18px]';
 
   return (
     <div className="flex items-center gap-2">
-      <div className="w-7 h-7 bg-[#0067F4] rounded-full flex items-center justify-center">
+      <div className="w-7 h-7 flex items-center justify-center">
+        <img 
+          src="/logo.png" 
+          alt="CodeDale Logo" 
+          className="w-7 h-7 object-contain"
+          onError={(e) => {
+            // Fallback to SVG if image fails to load
+            e.target.style.display = 'none';
+            e.target.nextSibling.style.display = 'block';
+          }}
+        />
         <svg
           viewBox="0 0 24 24"
           fill="none"
-          className="w-4 h-4"
+          className="w-4 h-4 hidden"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
@@ -168,6 +179,7 @@ const Logo = ({ size }) => {
     </div>
   );
 };
+
 
 const MenuIcon = () => (
   <svg className="w-4 h-4 text-gray-800" viewBox="0 0 24 24" fill="none" stroke="currentColor">

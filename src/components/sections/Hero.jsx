@@ -64,57 +64,58 @@ const Hero = () => {
           </motion.p>
 
           {/* CTA Button with hover effect */}
-          <motion.button
-            className="bg-[#1a1a1a] hover:bg-black text-white px-7 py-3.5 rounded-full font-inter text-[14px] font-medium transition-all duration-200 flex items-center mx-auto shadow-lg hover:shadow-xl mb-8"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-          >
-            {/* Expandable container for icons */}
-            <motion.div
-              className="flex items-center relative overflow-visible"
-              animate={{ width: isHovered ? '90px' : '28px' }}
-              transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-            >
-              {/* Calendar Icon - stays on left */}
-              <motion.div
-                className="w-7 h-7 bg-white rounded-full flex items-center justify-center flex-shrink-0 absolute left-0 z-10"
-                transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-              >
-                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="#0067F4" strokeWidth="2.5">
-                  <rect x="3" y="4" width="18" height="18" rx="2" />
-                  <line x1="16" y1="2" x2="16" y2="6" strokeLinecap="round" />
-                  <line x1="8" y1="2" x2="8" y2="6" strokeLinecap="round" />
-                  <line x1="3" y1="10" x2="21" y2="10" strokeLinecap="round" />
-                </svg>
-              </motion.div>
+          {/* CTA Button with hover effect */}
+<motion.button
+  className="bg-[#1a1a1a] hover:bg-black text-white px-7 py-3.5 rounded-full font-inter text-[14px] font-medium transition-all duration-200 flex items-center mx-auto shadow-lg hover:shadow-xl mb-8"
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.6, delay: 0.4 }}
+  whileHover={{ scale: 1.02 }}
+  whileTap={{ scale: 0.98 }}
+  onMouseEnter={() => setIsHovered(true)}
+  onMouseLeave={() => setIsHovered(false)}
+>
+  {/* Expandable container for icons */}
+  <motion.div
+    className="flex items-center relative overflow-visible"
+    animate={{ width: isHovered ? '90px' : '28px' }}
+    transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+  >
+    {/* Logo Icon - stays on left */}
+    <motion.div
+      className="w-7 h-7 bg-white rounded-full flex items-center justify-center flex-shrink-0 absolute left-0 z-10"
+      transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+    >
+      <img 
+        src="/logo.png" 
+        alt="CodeDale" 
+        className="w-5 h-5 object-contain"
+      />
+    </motion.div>
 
-              {/* Plus symbol */}
-              <motion.span
-                className="text-[14px] font-medium absolute"
-                style={{ left: '50%', transform: 'translateX(-50%)' }}
-                animate={{ opacity: isHovered ? 1 : 0 }}
-                transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-              >
-                +
-              </motion.span>
+    {/* Plus symbol */}
+    <motion.span
+      className="text-[14px] font-medium absolute"
+      style={{ left: '50%', transform: 'translateX(-50%)' }}
+      animate={{ opacity: isHovered ? 1 : 0 }}
+      transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+    >
+      +
+    </motion.span>
 
-              {/* You badge - appears on right */}
-              <motion.div
-                className="w-7 h-7 bg-[#0067F4] rounded-full flex items-center justify-center flex-shrink-0 absolute right-0"
-                animate={{ opacity: isHovered ? 1 : 0 }}
-                transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-              >
-                <span className="text-white text-[12px] font-semibold">You</span>
-              </motion.div>
-            </motion.div>
+    {/* You badge - appears on right */}
+    <motion.div
+      className="w-7 h-7 bg-[#0067F4] rounded-full flex items-center justify-center flex-shrink-0 absolute right-0"
+      animate={{ opacity: isHovered ? 1 : 0 }}
+      transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+    >
+      <span className="text-white text-[12px] font-semibold">You</span>
+    </motion.div>
+  </motion.div>
 
-            <span className="whitespace-nowrap ml-2.5">Book a 30-Min call</span>
-          </motion.button>
+  <span className="whitespace-nowrap ml-2.5">Book a 30-Min call</span>
+</motion.button>
+
 
           {/* User Avatars and Rating */}
           <motion.div
