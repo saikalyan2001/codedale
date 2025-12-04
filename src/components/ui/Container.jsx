@@ -1,5 +1,3 @@
-import React from 'react';
-
 /**
  * Container component - wraps content with max-width and padding
  * This ensures consistent spacing across all sections

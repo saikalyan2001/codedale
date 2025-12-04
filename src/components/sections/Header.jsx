@@ -1,42 +1,20 @@
-import React, { useState, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+const NAV_LINKS = ['Services', 'Our Work', 'Achievements', 'FAQs', 'Contact'];
+
 const Header = () => {
-  const navLinks = ['Services', 'Our Work', 'Achievements', 'FAQs', 'Contact'];
   const [open, setOpen] = useState(false);
   const [cursor, setCursor] = useState({ left: 0, width: 0, opacity: 0 });
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 pt-4 sm:pt-6">
-        {/* =================================================================== */}
-        {/* Desktop / Tablet layout (>= 768px)                                */}
-        {/* =================================================================== */}
+        {/* Desktop / Tablet layout (>= 768px) */}
         <div className="hidden md:flex items-center justify-between gap-4">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <div className="flex items-center gap-2">
-              <div className="w-7 h-7 bg-[#0067F4] rounded-full flex items-center justify-center">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  className="w-4 h-4"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M13 3L4 14h7l-1 7 9-11h-7l1-7z"
-                    fill="white"
-                    stroke="white"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </div>
-              <span className="text-[18px] font-satoshi font-bold text-[#0067F4]">
-                CodeDale
-              </span>
-            </div>
+            <Logo size="desktop" />
           </div>
 
           {/* Center nav pill with hover background */}
@@ -54,7 +32,7 @@ const Header = () => {
                 style={{ zIndex: 0 }}
               />
 
-              {navLinks.map((link) => (
+              {NAV_LINKS.map((link) => (
                 <NavItem key={link} label={link} setCursor={setCursor} />
               ))}
             </div>
@@ -74,9 +52,7 @@ const Header = () => {
           </div>
         </div>
 
-        {/* =================================================================== */}
-        {/* Mobile layout (< 768px): pill that expands                       */}
-        {/* =================================================================== */}
+        {/* Mobile layout (< 768px): pill that expands */}
         <motion.div
           className="md:hidden bg-white rounded-3xl overflow-hidden"
           style={{ boxShadow: '0 6px 24px rgba(0,0,0,0.06)' }}
@@ -85,29 +61,7 @@ const Header = () => {
         >
           {/* Top row */}
           <div className="flex items-center justify-between px-4 py-3">
-            {/* Logo */}
-            <div className="flex items-center gap-2">
-              <div className="w-7 h-7 bg-[#0067F4] rounded-full flex items-center justify-center">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  className="w-4 h-4"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M13 3L4 14h7l-1 7 9-11h-7l1-7z"
-                    fill="white"
-                    stroke="white"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </div>
-              <span className="text-[16px] font-satoshi font-bold text-[#0067F4]">
-                CodeDale
-              </span>
-            </div>
+            <Logo size="mobile" />
 
             {/* Hamburger / X */}
             <button
@@ -115,15 +69,7 @@ const Header = () => {
               onClick={() => setOpen((o) => !o)}
               aria-label="Toggle menu"
             >
-              {open ? (
-                <svg className="w-4 h-4 text-gray-800" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              ) : (
-                <svg className="w-4 h-4 text-gray-800" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-              )}
+              {open ? <CloseIcon /> : <MenuIcon />}
             </button>
           </div>
 
@@ -139,7 +85,7 @@ const Header = () => {
                 style={{ overflow: 'hidden' }}
               >
                 <nav className="mb-4 space-y-1">
-                  {navLinks.map((link) => (
+                  {NAV_LINKS.map((link) => (
                     <a
                       key={link}
                       href={`#${link.toLowerCase().replace(' ', '-')}`}
@@ -165,7 +111,9 @@ const Header = () => {
   );
 };
 
-// NavItem component for individual navigation links
+/**
+ * Individual navigation link with hover cursor tracking
+ */
 const NavItem = ({ label, setCursor }) => {
   const ref = useRef(null);
 
@@ -177,7 +125,7 @@ const NavItem = ({ label, setCursor }) => {
         if (!ref.current) return;
         const rect = ref.current.getBoundingClientRect();
         const parentRect = ref.current.parentElement.getBoundingClientRect();
-        const width = rect.width + 16; // Add padding to match design
+        const width = rect.width + 16;
         const left = rect.left - parentRect.left - 8;
 
         setCursor({ left, width, opacity: 1 });
@@ -188,5 +136,49 @@ const NavItem = ({ label, setCursor }) => {
     </button>
   );
 };
+
+/**
+ * CodeDale logo with lightning bolt icon
+ */
+const Logo = ({ size }) => {
+  const textSize = size === 'mobile' ? 'text-[16px]' : 'text-[18px]';
+
+  return (
+    <div className="flex items-center gap-2">
+      <div className="w-7 h-7 bg-[#0067F4] rounded-full flex items-center justify-center">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          className="w-4 h-4"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M13 3L4 14h7l-1 7 9-11h-7l1-7z"
+            fill="white"
+            stroke="white"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </div>
+      <span className={`${textSize} font-satoshi font-bold text-[#0067F4]`}>
+        CodeDale
+      </span>
+    </div>
+  );
+};
+
+const MenuIcon = () => (
+  <svg className="w-4 h-4 text-gray-800" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+  </svg>
+);
+
+const CloseIcon = () => (
+  <svg className="w-4 h-4 text-gray-800" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+  </svg>
+);
 
 export default Header;

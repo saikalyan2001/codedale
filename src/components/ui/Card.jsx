@@ -1,5 +1,3 @@
-import React from 'react';
-
 /**
  * Card component - reusable card with shadow and rounded corners
  * Used for testimonials and other content blocks

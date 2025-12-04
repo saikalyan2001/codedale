@@ -1,9 +1,6 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState } from 'react';
+import { motion } from 'framer-motion';
 
-/**
- * Hero Section - Exact match to Codedale's structure
- */
 const Hero = () => {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -11,7 +8,6 @@ const Hero = () => {
     <section className="min-h-screen bg-[#F5F5F7] flex items-center justify-center pt-40 pb-12 px-6 relative overflow-hidden">
       <div className="w-full max-w-[1600px] mx-auto px-4">
         <div className="text-center relative">
-
           {/* Notification Banner */}
           <motion.div
             className="inline-flex items-center gap-2.5 bg-white px-5 py-2 rounded-full shadow-sm border border-gray-200 mb-8"
@@ -19,12 +15,11 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            {/* Green dot with larger ring pulse animation */}
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-0 animate-slow-ping"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
             </span>
-            
+
             <span className="text-[14px] font-inter text-gray-800">Only 2 open slots available!</span>
             <svg className="w-4 h-4 text-gray-500" viewBox="0 0 24 24" fill="none">
               <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -44,9 +39,7 @@ const Hero = () => {
           {/* Main Headline - Desktop */}
           <motion.h1
             className="hidden md:block text-gray-900 font-satoshi font-semibold mb-5 pt-4 leading-[1.15] tracking-tight max-w-[900px] mx-auto"
-            style={{
-              fontSize: '48px',
-            }}
+            style={{ fontSize: '48px' }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -87,7 +80,7 @@ const Hero = () => {
               animate={{ width: isHovered ? '90px' : '28px' }}
               transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
             >
-              {/* Calendar Icon - stays on left, larger size */}
+              {/* Calendar Icon - stays on left */}
               <motion.div
                 className="w-7 h-7 bg-white rounded-full flex items-center justify-center flex-shrink-0 absolute left-0 z-10"
                 transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
@@ -100,7 +93,7 @@ const Hero = () => {
                 </svg>
               </motion.div>
 
-              {/* Plus symbol - fixed position, no shake */}
+              {/* Plus symbol */}
               <motion.span
                 className="text-[14px] font-medium absolute"
                 style={{ left: '50%', transform: 'translateX(-50%)' }}
@@ -110,7 +103,7 @@ const Hero = () => {
                 +
               </motion.span>
 
-              {/* You badge - appears on right, larger size */}
+              {/* You badge - appears on right */}
               <motion.div
                 className="w-7 h-7 bg-[#0067F4] rounded-full flex items-center justify-center flex-shrink-0 absolute right-0"
                 animate={{ opacity: isHovered ? 1 : 0 }}
@@ -153,7 +146,7 @@ const Hero = () => {
             </div>
           </motion.div>
 
-          {/* Left Testimonial Card - EXACT STRUCTURE */}
+          {/* Left Testimonial Card */}
           <motion.div
             className="hidden xl:block absolute -left-6 top-[50%] w-[250px]"
             initial={{ opacity: 0, scale: 0.8, rotate: 0 }}
@@ -162,13 +155,11 @@ const Hero = () => {
           >
             <div
               className="relative bg-white rounded-2xl text-xs p-5 w-full rotate-[-8deg]"
-              style={{
-                boxShadow: '0 10px 50px -12px rgba(0, 0, 0, 0.15)'
-              }}
+              style={{ boxShadow: '0 10px 50px -12px rgba(0, 0, 0, 0.15)' }}
             >
               <div className="flex items-start justify-between gap-3">
                 <p className="text-gray-500 text-[13px] font-medium tracking-tight mb-3 leading-[1.2]">
-                  "CodeDale turned the impossible into possible and redefined our expectations of technology partners."
+                  &ldquo;CodeDale turned the impossible into possible and redefined our expectations of technology partners.&rdquo;
                 </p>
                 <svg className="w-4 h-4 flex-shrink-0 text-gray-300" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z" />
@@ -180,7 +171,7 @@ const Hero = () => {
             </div>
           </motion.div>
 
-          {/* Right Testimonial Card - EXACT STRUCTURE */}
+          {/* Right Testimonial Card */}
           <motion.div
             className="hidden xl:block absolute -right-6 top-[42%] w-[250px]"
             initial={{ opacity: 0, scale: 0.8, rotate: 0 }}
@@ -189,13 +180,11 @@ const Hero = () => {
           >
             <div
               className="relative bg-white rounded-2xl text-xs p-5 w-full rotate-[8deg]"
-              style={{
-                boxShadow: '0 10px 50px -12px rgba(0, 0, 0, 0.15)'
-              }}
+              style={{ boxShadow: '0 10px 50px -12px rgba(0, 0, 0, 0.15)' }}
             >
               <div className="flex items-start justify-between gap-3">
                 <p className="text-gray-500 text-[13px] font-medium tracking-tight mb-3 leading-[1.2]">
-                  "CodeDale didn't just help us build our vision — they helped us build our future."
+                  &ldquo;CodeDale didn&apos;t just help us build our vision — they helped us build our future.&rdquo;
                 </p>
                 <svg className="w-4 h-4 flex-shrink-0 text-gray-300" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z" />
@@ -206,7 +195,6 @@ const Hero = () => {
               </span>
             </div>
           </motion.div>
-
         </div>
       </div>
     </section>

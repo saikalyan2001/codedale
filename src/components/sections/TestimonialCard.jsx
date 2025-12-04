@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import Card from '../ui/Card';
 
@@ -46,7 +46,7 @@ const TestimonialCard = ({ name, quote, response, index }) => {
         
         {/* Client Quote */}
         <p className="text-codedale-navy font-satoshi text-xl md:text-2xl leading-relaxed mb-6">
-          "{quote}"
+          &ldquo;{quote}&rdquo;
         </p>
 
         {/* Codedale's Response */}
