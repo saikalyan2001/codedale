@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Header = () => {
   const navLinks = ['Services', 'Our Work', 'Achievements', 'FAQs', 'Contact'];
   const [open, setOpen] = useState(false);
+  const [cursor, setCursor] = useState({ left: 0, width: 0, opacity: 0 });
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
@@ -38,28 +39,31 @@ const Header = () => {
             </div>
           </div>
 
-          {/* Center nav pill */}
+          {/* Center nav pill with hover background */}
           <div className="flex-1 flex justify-center px-4">
             <div
-              className="flex items-center rounded-full bg-white px-6 lg:px-10 py-3 gap-4 lg:gap-7"
+              className="relative flex items-center rounded-full bg-white px-6 lg:px-10 py-3 gap-4 lg:gap-7 transition-all duration-200 hover:-translate-y-[2px]"
               style={{ boxShadow: '0 18px 45px rgba(15, 23, 42, 0.12)' }}
+              onMouseLeave={() => setCursor((p) => ({ ...p, opacity: 0 }))}
             >
+              {/* Sliding background pill */}
+              <motion.div
+                className="absolute top-1 bottom-1 rounded-full bg-[#F5F5F7]"
+                animate={cursor}
+                transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                style={{ zIndex: 0 }}
+              />
+
               {navLinks.map((link) => (
-                <a
-                  key={link}
-                  href={`#${link.toLowerCase().replace(' ', '-')}`}
-                  className="text-gray-800 font-inter text-[14px] lg:text-[15px] whitespace-nowrap"
-                >
-                  {link}
-                </a>
+                <NavItem key={link} label={link} setCursor={setCursor} />
               ))}
             </div>
           </div>
 
-          {/* Right black CTA pill */}
+          {/* Right black CTA pill with hover effect */}
           <div className="flex-shrink-0">
             <button
-              className="rounded-full bg-black text-white px-6 lg:px-7 py-3 font-inter text-[14px] font-medium flex items-center gap-2"
+              className="rounded-full bg-black text-white px-6 lg:px-7 py-3 font-inter text-[14px] font-medium flex items-center gap-2 transition-all duration-200 hover:-translate-y-[2px] hover:scale-[1.02]"
               style={{ boxShadow: '0 18px 45px rgba(15, 23, 42, 0.35)' }}
             >
               Book a Call
@@ -107,7 +111,7 @@ const Header = () => {
 
             {/* Hamburger / X */}
             <button
-              className="w-8 h-8 flex items-center justify-center rounded-full bg-[#F5F5F7]"
+              className="w-8 h-8 flex items-center justify-center rounded-full bg-[#F5F5F7] transition-all duration-200 hover:scale-110 active:scale-95"
               onClick={() => setOpen((o) => !o)}
               aria-label="Toggle menu"
             >
@@ -139,7 +143,7 @@ const Header = () => {
                     <a
                       key={link}
                       href={`#${link.toLowerCase().replace(' ', '-')}`}
-                      className="block text-gray-900 font-inter text-[15px] py-2.5"
+                      className="block text-gray-900 font-inter text-[15px] py-2.5 transition-colors hover:text-[#0067F4]"
                       onClick={() => setOpen(false)}
                     >
                       {link}
@@ -147,7 +151,7 @@ const Header = () => {
                   ))}
                 </nav>
                 <button
-                  className="w-full bg-[#F5F5F7] text-gray-900 rounded-full py-3 text-[15px] font-inter border border-gray-200"
+                  className="w-full bg-[#F5F5F7] text-gray-900 rounded-full py-3 text-[15px] font-inter border border-gray-200 transition-all duration-200 hover:bg-gray-900 hover:text-white active:scale-[0.98]"
                   onClick={() => setOpen(false)}
                 >
                   Book a Call
@@ -158,6 +162,30 @@ const Header = () => {
         </motion.div>
       </div>
     </header>
+  );
+};
+
+// NavItem component for individual navigation links
+const NavItem = ({ label, setCursor }) => {
+  const ref = useRef(null);
+
+  return (
+    <button
+      ref={ref}
+      type="button"
+      onMouseEnter={() => {
+        if (!ref.current) return;
+        const rect = ref.current.getBoundingClientRect();
+        const parentRect = ref.current.parentElement.getBoundingClientRect();
+        const width = rect.width + 16; // Add padding to match design
+        const left = rect.left - parentRect.left - 8;
+
+        setCursor({ left, width, opacity: 1 });
+      }}
+      className="relative z-10 text-gray-800 font-inter text-[14px] lg:text-[15px] whitespace-nowrap transition-colors"
+    >
+      {label}
+    </button>
   );
 };
 
