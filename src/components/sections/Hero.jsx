@@ -1,10 +1,12 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 /**
  * Hero Section - Exact match to Codedale's structure
  */
 const Hero = () => {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
     <section className="min-h-screen bg-[#F5F5F7] flex items-center justify-center pt-40 pb-12 px-6 relative overflow-hidden">
       <div className="w-full max-w-[1600px] mx-auto px-4">
@@ -17,7 +19,12 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+            {/* Green dot with larger ring pulse animation */}
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-0 animate-slow-ping"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+            </span>
+            
             <span className="text-[14px] font-inter text-gray-800">Only 2 open slots available!</span>
             <svg className="w-4 h-4 text-gray-500" viewBox="0 0 24 24" fill="none">
               <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -63,24 +70,57 @@ const Hero = () => {
             Trusted by startups and enterprises to design, build, and scale products that perform globally.
           </motion.p>
 
-          {/* CTA Button */}
+          {/* CTA Button with hover effect */}
           <motion.button
-            className="bg-[#1a1a1a] hover:bg-black text-white px-7 py-3.5 rounded-full font-inter text-[14px] font-medium transition-all duration-200 flex items-center gap-2.5 mx-auto shadow-lg hover:shadow-xl mb-8"
+            className="bg-[#1a1a1a] hover:bg-black text-white px-7 py-3.5 rounded-full font-inter text-[14px] font-medium transition-all duration-200 flex items-center mx-auto shadow-lg hover:shadow-xl mb-8"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
           >
-            <div className="w-5 h-5 bg-[#0067F4] rounded-full flex items-center justify-center">
-              <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5">
-                <rect x="3" y="4" width="18" height="18" rx="2" />
-                <line x1="16" y1="2" x2="16" y2="6" strokeLinecap="round" />
-                <line x1="8" y1="2" x2="8" y2="6" strokeLinecap="round" />
-                <line x1="3" y1="10" x2="21" y2="10" strokeLinecap="round" />
-              </svg>
-            </div>
-            Book a 30-Min call
+            {/* Expandable container for icons */}
+            <motion.div
+              className="flex items-center relative overflow-visible"
+              animate={{ width: isHovered ? '90px' : '28px' }}
+              transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+            >
+              {/* Calendar Icon - stays on left, larger size */}
+              <motion.div
+                className="w-7 h-7 bg-white rounded-full flex items-center justify-center flex-shrink-0 absolute left-0 z-10"
+                transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+              >
+                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="#0067F4" strokeWidth="2.5">
+                  <rect x="3" y="4" width="18" height="18" rx="2" />
+                  <line x1="16" y1="2" x2="16" y2="6" strokeLinecap="round" />
+                  <line x1="8" y1="2" x2="8" y2="6" strokeLinecap="round" />
+                  <line x1="3" y1="10" x2="21" y2="10" strokeLinecap="round" />
+                </svg>
+              </motion.div>
+
+              {/* Plus symbol - fixed position, no shake */}
+              <motion.span
+                className="text-[14px] font-medium absolute"
+                style={{ left: '50%', transform: 'translateX(-50%)' }}
+                animate={{ opacity: isHovered ? 1 : 0 }}
+                transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+              >
+                +
+              </motion.span>
+
+              {/* You badge - appears on right, larger size */}
+              <motion.div
+                className="w-7 h-7 bg-[#0067F4] rounded-full flex items-center justify-center flex-shrink-0 absolute right-0"
+                animate={{ opacity: isHovered ? 1 : 0 }}
+                transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+              >
+                <span className="text-white text-[12px] font-semibold">You</span>
+              </motion.div>
+            </motion.div>
+
+            <span className="whitespace-nowrap ml-2.5">Book a 30-Min call</span>
           </motion.button>
 
           {/* User Avatars and Rating */}
